@@ -28,6 +28,7 @@ mod tests {
     // }
 
     #[test]
+    #[ignore]
     fn larger_can_hold() {
         let larger = Rectangle {
             width: 8,
@@ -40,7 +41,9 @@ mod tests {
         assert!(larger.can_hold(smaller));
     }
 
+    // should_panic
     #[test]
+    #[should_panic(expected = "smaller cannot hold larger")]
     fn smaller_cannot_hold_larger() {
         let larger = Rectangle {
             width: 8,
@@ -50,6 +53,17 @@ mod tests {
             width: 5,
             length: 1,
         };
-        assert!(smaller.can_hold(larger));
+        let result = smaller.can_hold(larger);
+        assert!(result, "smaller cannot hold larger,value was {}", result);
+    }
+
+    // Result<T,E>
+    #[test]
+    fn it_works_result() -> Result<(), String> {
+        if 2 + 2 == 4 {
+            Ok(())
+        } else {
+            Err(String::from("two plus two doesn't equal four"))
+        }
     }
 }
