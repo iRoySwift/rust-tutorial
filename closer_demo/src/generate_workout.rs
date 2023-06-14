@@ -36,7 +36,7 @@ where
             None => {
                 let y = (self.calculation)(arg);
                 self.value = Some(y);
-                v
+                y
             }
         }
     }
