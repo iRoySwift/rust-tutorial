@@ -2,8 +2,16 @@ use minigrep::Config;
 use std::{env, process};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let config = Config::new(&args).unwrap_or_else(|error| {
+    // 获取指令
+    // let args: Vec<String> = env::args().collect();
+    // let config = Config::new(&args).unwrap_or_else(|error| {
+    //     eprintln!("Problem parsing arguments: {}", error);
+    //     process::exit(1)
+    // });
+
+    // 使用迭代器重写
+    // let args: Vec<String> = env::args().collect();
+    let config = Config::new(env::args()).unwrap_or_else(|error| {
         eprintln!("Problem parsing arguments: {}", error);
         process::exit(1)
     });
