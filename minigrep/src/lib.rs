@@ -1,8 +1,17 @@
+/// 执行minigrep 命令行
+///
+/// # Examples
+///
+/// ```
+/// ```
+///
+///
+///
 use std::{env, error::Error, fs};
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    println!("--{:?}", config);
     let content = fs::read_to_string(config.filename)?;
-
     let results = if config.case_sensitive {
         search(&config.query, &content)
     } else {
@@ -13,7 +22,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     }
     Ok(())
 }
-
+#[derive(Debug)]
 pub struct Config {
     pub query: String,
     pub filename: String,
