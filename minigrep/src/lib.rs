@@ -1,14 +1,8 @@
-/// 执行minigrep 命令行
-///
-/// # Examples
-///
-/// ```
-/// ```
-///
-///
-///
 use std::{env, error::Error, fs};
 
+/**
+ * CASE_INSENSITIVE=1 cargo run who poem.txt
+ */
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     println!("--{:?}", config);
     let content = fs::read_to_string(config.filename)?;
@@ -26,7 +20,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 pub struct Config {
     pub query: String,
     pub filename: String,
-    case_sensitive: bool,
+    pub case_sensitive: bool,
 }
 
 impl Config {
