@@ -1,4 +1,4 @@
-// use add_one;
+use add_one;
 
 // cargo run -p adder
 fn main() {
