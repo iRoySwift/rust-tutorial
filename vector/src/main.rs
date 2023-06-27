@@ -1,13 +1,9 @@
 use std::collections::HashMap;
 
 fn main() {
-    println!("Hello, world!");
-    // let v: Vec<i32> = Vec::new();
-    // let v = vec![1, 2, 3, 4];
-
-    // vec_demo();
+    string_vec_demo();
     // for_vec_demo();
-    count_word_demo();
+    // count_word_demo();
 }
 // 索引 VS get 处理访问越界
 // 索引：panic
@@ -32,9 +28,10 @@ fn vec_demo() {
 // 不可变引用
 fn mut_demo() {
     let mut v: Vec<i32> = vec![1, 2, 3, 4, 5];
-    let first = &v[0]; // immutable borrow occurs here
-                       // v.push(6); // mutable borrow occurs here
-    println!("The first element is {}", first);
+    let mut first = &v[0]; // immutable borrow occurs here
+    println!("first {}", first);
+    // v.push(6); // mutable borrow occurs here
+    println!("The first element is {:?}", first);
 }
 
 // vec 遍历
