@@ -82,7 +82,7 @@ fn temperatures() {
         io::stdin()
             .read_line(&mut celsis)
             .expect("failed to read from stdin");
-        let celsis: f32 = celsis.trim().parse().expect("not a number");
+        let celsis = celsis.trim().parse::<f32>().expect("not a number");
         let fahrenheit = celsis * 1.8 + 32.0;
         println!("{celsis}摄氏温度 = {fahrenheit}华氏温度");
     } else {
@@ -91,7 +91,7 @@ fn temperatures() {
         io::stdin()
             .read_line(&mut fahrenheit)
             .expect("faild to read");
-        let fahrenheit: f32 = fahrenheit.trim().parse().expect("not a  number");
+        let fahrenheit = fahrenheit.trim().parse::<f32>().expect("not a  number");
         let celsis = (fahrenheit - 32.0) / 1.8;
         println!("{fahrenheit}华氏温度 = {celsis}摄氏温度");
     }
