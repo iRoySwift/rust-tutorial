@@ -1,13 +1,13 @@
 use std::io;
 
 fn main() {
-    // loop_demo();
+    loop_demo();
     // while_demo();
     // for_demo();
     // for_demo_lift();
     // break_continue_loop();
     // temperatures();
-    println!("fibonacci: {}", fibonacci(9))
+    // println!("fibonacci: {}", fibonacci(9))
 }
 
 fn loop_demo() {
