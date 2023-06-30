@@ -4,20 +4,9 @@ struct Rectangle<T, U> {
     height: U,
 }
 
-impl<T, U> Rectangle<T, U>
-where
-    T: std::ops::Mul<U, Output = V>,
-    U: Copy,
-    V: Copy,
-{
-    fn area<V>(&self) -> V
-    where
-        T: Into<V>,
-        U: Into<V>,
-    {
-        let width: V = self.width.into();
-        let height: V = self.height.into();
-        width * height
+impl<T: std::ops::Mul<U, Output = ()>, U> Rectangle<T, U> {
+    fn area(&self) {
+        self.width * self.height
     }
 }
 
