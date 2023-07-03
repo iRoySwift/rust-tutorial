@@ -3,4 +3,5 @@ mod can_hold;
 
 fn main() {
     can_hold::run();
+    calc_area::run();
 }

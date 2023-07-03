@@ -2,22 +2,6 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
-struct Guess {
-    value: i32,
-}
-
-impl Guess {
-    fn new(value: i32) -> Guess {
-        if value < 0 || value > 100 {
-            println!("猜的数字必须在0-100之间！");
-        }
-        Guess { value }
-    }
-    fn value(&self) -> i32 {
-        self.value
-    }
-}
-
 pub mod guess {
     use super::*;
 
@@ -52,4 +36,31 @@ pub mod guess {
     }
 }
 
-// pub use crate::guess;
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 0 || value > 100 {
+            panic!("猜的数字必须在0-100之间! {}", value);
+        }
+        Guess { value }
+    }
+    fn value(&self) -> i32 {
+        self.value
+    }
+}
+
+// unit tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+    // cargo test -p guess_game greater_than_100
+    #[test]
+    #[ignore]
+    #[should_panic(expected = "猜的数字必须在0-100之间")]
+    fn greater_than_100() {
+        Guess::new(200);
+    }
+}

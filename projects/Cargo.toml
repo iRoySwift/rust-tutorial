@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "guess_game"
+    "guess_game",
+    "minigrep",
 ]

@@ -1,11 +1,14 @@
 #[derive(Debug)]
-struct Rectangle<T, U> {
+struct Rectangle<T> {
     width: T,
-    height: U,
+    height: T,
 }
 
-impl<T: std::ops::Mul<U, Output = ()>, U> Rectangle<T, U> {
-    fn area(&self) {
+impl<T> Rectangle<T>
+where
+    T: std::ops::Mul<Output = T> + Copy,
+{
+    fn area(&self) -> T {
         self.width * self.height
     }
 }
@@ -13,7 +16,7 @@ impl<T: std::ops::Mul<U, Output = ()>, U> Rectangle<T, U> {
 pub fn run() {
     let rectangle = Rectangle {
         width: 5,
-        height: 10.5,
+        height: 10,
     };
 
     let area = rectangle.area();
