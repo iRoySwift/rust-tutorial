@@ -8,8 +8,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
-        println!("{:?}", args);
+    pub fn build(mut args: env::Args) -> Result<Config, &'static str> {
         if args.len() < 3 {
             return Err("没有足够的参数!");
         }
@@ -46,7 +45,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn search<'a>(query: &'a str, content: &'a str) -> Vec<&'a str> {
+fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     let mut vec = Vec::new();
     for line in content.lines() {
         if line.contains(query) {
@@ -56,7 +55,7 @@ fn search<'a>(query: &'a str, content: &'a str) -> Vec<&'a str> {
     vec
 }
 
-fn search_case_insensitive<'a>(query: &'a str, content: &'a str) -> Vec<&'a str> {
+fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     let mut vec = Vec::new();
     let query = query.to_lowercase();
     for line in content.lines() {
