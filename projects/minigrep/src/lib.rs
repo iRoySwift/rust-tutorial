@@ -8,10 +8,10 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn build(mut args: env::Args) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("没有足够的参数!");
-        }
+    pub fn build(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
+        // if args.len() < 3 {
+        //     return Err("没有足够的参数!");
+        // }
         args.next();
         let query = match args.next() {
             Some(arg) => arg,
@@ -46,24 +46,34 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    let mut vec = Vec::new();
-    for line in content.lines() {
-        if line.contains(query) {
-            vec.push(line)
-        }
-    }
-    vec
+    // let mut vec = Vec::new();
+    // for line in content.lines() {
+    //     if line.contains(query) {
+    //         vec.push(line)
+    //     }
+    // }
+    // vec
+    // 使用迭代器适配器来使代码更简明
+    content
+        .lines()
+        .filter(|line| line.contains(&query))
+        .collect()
 }
 
 fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    let mut vec = Vec::new();
-    let query = query.to_lowercase();
-    for line in content.lines() {
-        if line.to_lowercase().contains(&query) {
-            vec.push(line);
-        }
-    }
-    vec
+    // let mut vec = Vec::new();
+    // let query = query.to_lowercase();
+    // for line in content.lines() {
+    //     if line.to_lowercase().contains(&query) {
+    //         vec.push(line);
+    //     }
+    // }
+    // vec
+    // 使用迭代器适配器来使代码更简明
+    content
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
+        .collect()
 }
 
 #[cfg(test)]
