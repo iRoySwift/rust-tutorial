@@ -3,7 +3,7 @@ mod deref_demo;
 mod rc_refcell_list;
 mod rc_sp;
 mod rc_weak;
-mod refcell;
+mod refcell_messager;
 mod refcell_rc;
 
 fn main() {

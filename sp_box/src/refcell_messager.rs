@@ -45,13 +45,13 @@ mod tests {
     use super::*;
 
     struct MockMessenger {
-        send_messages: RefCell<Vec<String>>,
+        send_messages: Rc<RefCell<Vec<String>>>,
     }
 
     impl MockMessenger {
         fn new() -> MockMessenger {
             MockMessenger {
-                send_messages: RefCell::new(vec![]),
+                send_messages: Rc::new(RefCell::new(vec![])),
             }
         }
     }
@@ -62,7 +62,15 @@ mod tests {
         // Messenger trait中 send方法里self是不可变 所以不能使用&mut self;
         // 这边可以使用内部可变性RefCell<T> 方法
         fn send(&self, msg: &str) {
-            self.send_messages.borrow_mut().push(String::from(msg));
+            // self.send_messages.borrow_mut().push(String::from(msg));
+
+            // 使用Rc 可以不被多次borrow mut;
+            let rc_sent_message = Rc::clone(&self.sent_messages);
+            let one_borrow = Rc::clone(&rc_sent_message);
+            let two_borrow = Rc::clone(&rc_sent_message);
+
+            one_borrow.borrow_mut().push(String::from(message));
+            two_borrow.borrow_mut().push(String::from(message));
         }
     }
 
@@ -72,6 +80,6 @@ mod tests {
         let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
 
         limit_tracker.set_value(80);
-        assert_eq!(mock_messenger.send_messages.borrow().len(), 1);
+        assert_eq!(mock_messenger.send_messages.borrow().len(), 2);
     }
 }
