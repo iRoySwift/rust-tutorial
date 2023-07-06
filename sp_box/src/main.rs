@@ -1,16 +1,17 @@
 mod custom_sp;
 mod deref_demo;
-mod rc_refcell_list;
 mod rc_sp;
-mod rc_weak;
 mod refcell_messager;
-mod refcell_rc;
+mod refcell_rc_cons;
+mod refcell_cons;
+mod refcell_weak_cons;
+mod refcell_weak_node;
 
 fn main() {
     deref_demo::run();
     custom_sp::run();
     rc_sp::run();
-    refcell_rc::run();
-    rc_refcell_list::run();
-    rc_weak::run();
+    refcell_cons::run();
+    refcell_rc_cons::run();
+    refcell_weak_node::run();
 }
