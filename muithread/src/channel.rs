@@ -38,7 +38,7 @@ pub fn vec_channel() {
             thread::sleep(Duration::from_millis(200));
         }
     });
-
+    // 在主线程中，不再显式调用 recv 函数：而是将 rx 当作一个迭代器
     for received in rx {
         println!("Got : {}", received)
     }

@@ -1,4 +1,7 @@
-use design_mode::{Button, Draw, Screen};
+// use oop::{Button, Draw, Screen};
+
+use oop::blog;
+use oop::gui_draw::{Button, Draw, Screen};
 
 struct SelectBox {
     width: u32,
@@ -26,4 +29,5 @@ fn main() {
         ],
     };
     screen.run();
+    blog::run();
 }
